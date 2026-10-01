@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Dojo Central — Gestión de Academia</title>
+<meta name="description" content="Boceto de dashboard para la gestión integral de una academia de artes marciales: alumnos, clases, pagos, asistencia e instructores." />
+<link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+<div class="app-shell">
+
+  <!-- ============ SIDEBAR ============ -->
+  <aside class="sidebar" id="sidebar">
+    <div class="sidebar-brand">
+      <div class="brand-mark">
+        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.2L21 10l-5 4.2L17.4 21 12 17.3 6.6 21 8 14.2 3 10l6.6-1.8z"/></svg>
+      </div>
+      <div>
+        <div class="brand-name">Dojo Central</div>
+        <div class="brand-sub">Gestión de academia</div>
+      </div>
+    </div>
+
+    <nav class="sidebar-nav">
+    <div class="nav-group-label">General</div>
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-link" data-view="dashboard">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="9" rx="1.5"/><rect x="14" y="3" width="7" height="5" rx="1.5"/><rect x="14" y="12" width="7" height="9" rx="1.5"/><rect x="3" y="16" width="7" height="5" rx="1.5"/></svg>
+        Resumen</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="reportes">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3v18h18"/><path d="M7 15l4-6 3 4 5-8"/></svg>
+        Reportes</button></li>
+    </ul>
+
+    <div class="nav-group-label">Academia</div>
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-link" data-view="recepcion">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M8 3v4M16 3v4M3 11h18"/><path d="M8 16l2 2 4-4"/></svg>
+        Recepción</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="alumnos">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 21v-2a4 4 0 0 0-4-4H7a4 4 0 0 0-4 4v2"/><circle cx="10" cy="7" r="4"/><path d="M22 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/></svg>
+        Alumnos</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="apoderados">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="7" r="3"/><circle cx="17" cy="9" r="2.3"/><path d="M3 20v-1a5 5 0 0 1 5-5h2a5 5 0 0 1 5 5v1"/><path d="M15.5 14.2A4 4 0 0 1 21 18v1"/></svg>
+        Apoderados</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="clases">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="17" rx="2"/><path d="M3 9h18M8 2v4M16 2v4"/></svg>
+        Clases y horario</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="asistencia">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 12l2 2 4-4"/><circle cx="12" cy="12" r="9"/></svg>
+        Asistencia</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="instructores">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2l2.4 6.2L21 10l-5 4.2L17.4 21 12 17.3 6.6 21 8 14.2 3 10l6.6-1.8z"/></svg>
+        Instructores</button></li>
+    </ul>
+
+    <div class="nav-group-label">Finanzas</div>
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-link" data-view="pagos">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="5" width="20" height="14" rx="2"/><path d="M2 10h20"/></svg>
+        Pagos y membresías</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="caja">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="13" rx="2"/><path d="M2 11h20"/><circle cx="12" cy="15" r="2"/><path d="M6 4h12"/></svg>
+        Caja</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="gastos">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5.5c0-1.7-2.2-3-5-3s-5 1.3-5 3 2.2 2.5 5 3 5 1.3 5 3-2.2 3-5 3-5-1.3-5-3"/></svg>
+        Gastos</button></li>
+    </ul>
+
+    <div class="nav-group-label">Sistema</div>
+    <ul class="nav-list">
+      <li class="nav-item"><button class="nav-link" data-view="planes">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.6 12.3L12.7 20a2 2 0 0 1-2.8 0l-8-8A2 2 0 0 1 2 10.5V4a2 2 0 0 1 2-2h6.5a2 2 0 0 1 1.4.6l8.6 8.6a2 2 0 0 1 0 2.9z"/><circle cx="7.5" cy="7.5" r="1.3"/></svg>
+        Planes y Grados</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="notificaciones">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+        Notificaciones</button></li>
+      <li class="nav-item"><button class="nav-link" data-view="configuracion">
+        <svg class="nav-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 1 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.6 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 1 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.6a1.65 1.65 0 0 0 1-1.51V3a2 2 0 1 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 1 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+        Configuración</button></li>
+    </ul>
+    </nav>
+
+    <div class="sidebar-footer">
+      <div class="sidebar-user">
+        <div class="avatar-chip">NC</div>
+        <div class="who">
+          <div class="name">Néstor Chávez</div>
+          <div class="role">Administrador</div>
+        </div>
+      </div>
+    </div>
+  </aside>
+
+  <!-- ============ MAIN ============ -->
+  <div class="main">
+    <header class="topbar">
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menú">
+        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M3 6h18M3 12h18M3 18h18"/></svg>
+      </button>
+      <div>
+        <h1 class="topbar-title" id="topbarTitle">Resumen</h1>
+        <div class="topbar-sub" id="topbarSub">Visión general de la academia — hoy, 1 de octubre de 2026</div>
+      </div>
+      <div class="topbar-spacer"></div>
+      <div class="search-box">
+        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        <input type="text" placeholder="Buscar alumno, clase, instructor…" id="globalSearch" autocomplete="off" />
+        <div class="search-results" id="searchResults" hidden></div>
+      </div>
+      <button class="icon-btn" id="themeToggle" title="Cambiar tema" aria-label="Cambiar tema">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"/><path d="M12 1v2M12 21v2M4.2 4.2l1.4 1.4M18.4 18.4l1.4 1.4M1 12h2M21 12h2M4.2 19.8l1.4-1.4M18.4 5.6l1.4-1.4"/></svg>
+      </button>
+      <button class="icon-btn" title="Notificaciones" aria-label="Notificaciones">
+        <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.7 21a2 2 0 0 1-3.4 0"/></svg>
+      </button>
+      <div class="avatar-chip" style="background:var(--dojo-red)">NC</div>
+    </header>
+
+    <!-- ===================== DASHBOARD ===================== -->
+    <section class="view active" id="view-dashboard">
+      <div class="kpi-grid" id="kpiGrid"></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3>Ingresos mensuales</h3>
+            <div class="card-actions" id="revenueActions"></div>
+          </div>
+          <div class="card-body" id="revenueChart"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Meta de ingresos del mes</h3></div>
+          <div class="card-body" id="revenueGoalMeter"></div>
+        </div>
+      </div>
+
+      <div class="charts-grid-3">
+        <div class="card">
+          <div class="card-header">
+            <h3>Nuevos alumnos por mes</h3>
+            <div class="card-actions" id="enrollActions"></div>
+          </div>
+          <div class="card-body" id="enrollChart"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Asistencia por día (últimos 7 días)</h3>
+            <div class="card-actions" id="attendanceActions"></div>
+          </div>
+          <div class="card-body" id="attendanceChart"></div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-bottom:16px">
+        <div class="card-header">
+          <h3>Ocupación por horario</h3>
+          <div class="card-actions" id="occupancyActions"></div>
+        </div>
+        <div class="card-body" id="occupancyHeatmap"></div>
+      </div>
+
+      <div class="dash-lower">
+        <div class="card">
+          <div class="card-header">
+            <h3>Distribución por nivel</h3>
+            <div class="card-actions" id="beltActions"></div>
+          </div>
+          <div class="card-body" id="beltChart"></div>
+        </div>
+        <div class="card">
+          <div class="card-header">
+            <h3>Alumnos por disciplina</h3>
+            <div class="card-actions" id="programDistActions"></div>
+          </div>
+          <div class="card-body" id="programDistChart"></div>
+        </div>
+      </div>
+
+      <div class="dash-lower">
+        <div class="card">
+          <div class="card-header"><h3>Alertas de membresía</h3></div>
+          <div class="card-body">
+            <div class="alert-list" id="alertList"></div>
+          </div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Actividad reciente</h3></div>
+          <div class="card-body">
+            <div class="activity-list" id="activityList"></div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== REPORTES ===================== -->
+    <section class="view" id="view-reportes">
+      <div class="view-header">
+        <div>
+          <h2>Reportes</h2>
+          <p>Deserción (churn), ingresos vs. proyección y clases más populares.</p>
+        </div>
+      </div>
+      <div class="kpi-grid" id="reportsKpiGrid"></div>
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-header"><h3>Ingresos: cobrado vs. por cobrar</h3></div>
+          <div class="card-body" id="reportRevenueChart"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Motivos de baja (churn)</h3></div>
+          <div class="card-body" id="churnReasonsChart"></div>
+        </div>
+      </div>
+      <div class="card">
+        <div class="card-header"><h3>Clases más populares</h3></div>
+        <div class="card-body" id="popularClassesList"></div>
+      </div>
+    </section>
+
+    <!-- ===================== RECEPCIÓN ===================== -->
+    <section class="view" id="view-recepcion">
+      <div class="view-header">
+        <div>
+          <h2>Recepción</h2>
+          <p>Marcaje rápido por DNI con semáforo de estado de cuenta.</p>
+        </div>
+      </div>
+      <div class="card" style="max-width:640px;margin:0 auto">
+        <div class="card-body" style="padding:30px">
+          <form id="receptionForm" style="display:flex;gap:10px;margin-bottom:22px">
+            <input type="text" id="receptionDni" class="text-input" placeholder="Escanea o escribe el DNI del alumno…" style="flex:1;font-size:16px;padding:13px 16px" autocomplete="off" />
+            <button type="submit" class="btn btn-primary" style="padding:0 22px">Marcar ingreso</button>
+          </form>
+          <div id="receptionResult"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== ALUMNOS ===================== -->
+    <section class="view" id="view-alumnos">
+      <div class="view-header">
+        <div>
+          <h2>Alumnos</h2>
+          <p>Gestiona la información, cinturón y membresía de cada alumno.</p>
+        </div>
+        <button class="btn btn-primary" id="btnNewStudent">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Nuevo alumno
+        </button>
+      </div>
+
+      <div class="table-toolbar">
+        <input type="text" class="text-input" id="studentSearch" placeholder="Buscar por nombre…" style="min-width:220px" />
+        <select class="select-input" id="filterProgram">
+          <option value="">Todas las disciplinas</option>
+        </select>
+        <select class="select-input" id="filterPaymentStatus">
+          <option value="">Todos los estados de pago</option>
+          <option value="al_dia">Al día</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="vencido">Vencido</option>
+        </select>
+        <select class="select-input" id="filterLifecycleStatus">
+          <option value="">Todos los estados</option>
+          <option value="Activo">Activo</option>
+          <option value="Morosidad">Morosidad</option>
+          <option value="Congelado">Congelado</option>
+          <option value="Inactivo">Inactivo</option>
+        </select>
+        <div class="topbar-spacer"></div>
+        <button type="button" class="chip-btn" id="btnExportStudents">Exportar CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr>
+              <th>Alumno</th>
+              <th>DNI</th>
+              <th>Disciplina</th>
+              <th>Nivel</th>
+              <th>Plan</th>
+              <th>Pago</th>
+              <th>Asistencia</th>
+              <th>Estado</th>
+            </tr>
+          </thead>
+          <tbody id="studentsTableBody"></tbody>
+        </table>
+        <div class="pagination" id="studentsPagination"></div>
+      </div>
+    </section>
+
+    <!-- ===================== APODERADOS ===================== -->
+    <section class="view" id="view-apoderados">
+      <div class="view-header">
+        <div>
+          <h2>Apoderados</h2>
+          <p>Padres, madres o tutores vinculados a alumnos menores de edad.</p>
+        </div>
+        <button class="btn btn-primary" id="btnNewGuardian">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Nuevo apoderado
+        </button>
+      </div>
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Apoderado</th><th>DNI</th><th>Contacto</th><th>Hijos vinculados</th><th></th></tr></thead>
+          <tbody id="guardiansTableBody"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===================== CLASES ===================== -->
+    <section class="view" id="view-clases">
+      <div class="view-header">
+        <div>
+          <h2>Clases y horario</h2>
+          <p>Horario semanal por disciplina, instructor y aforo.</p>
+        </div>
+        <button class="btn btn-primary" id="btnNewClass">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Nueva clase
+        </button>
+      </div>
+      <div class="schedule-grid" id="scheduleGrid"></div>
+    </section>
+
+    <!-- ===================== ASISTENCIA ===================== -->
+    <section class="view" id="view-asistencia">
+      <div class="view-header">
+        <div>
+          <h2>Asistencia</h2>
+          <p>Control de check-in de las clases de hoy y tendencia semanal.</p>
+        </div>
+      </div>
+
+      <div class="charts-grid" style="grid-template-columns:1fr 1.1fr">
+        <div class="card">
+          <div class="card-header">
+            <h3>Asistencia por día</h3>
+            <div class="card-actions" id="attendance2Actions"></div>
+          </div>
+          <div class="card-body" id="attendanceChart2"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Check-in de hoy</h3></div>
+          <div class="card-body" id="checkinList"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== INSTRUCTORES ===================== -->
+    <section class="view" id="view-instructores">
+      <div class="view-header">
+        <div>
+          <h2>Instructores</h2>
+          <p>Equipo docente de la academia por disciplina.</p>
+        </div>
+        <button class="btn btn-primary" id="btnNewInstructor">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Nuevo instructor
+        </button>
+      </div>
+      <div class="instructor-grid" id="instructorGrid"></div>
+    </section>
+
+    <!-- ===================== PAGOS ===================== -->
+    <section class="view" id="view-pagos">
+      <div class="view-header">
+        <div>
+          <h2>Pagos y membresías</h2>
+          <p>Historial de pagos, planes y estado de cuenta por alumno.</p>
+        </div>
+        <button class="btn btn-primary" id="btnNewPayment">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round"><path d="M12 5v14M5 12h14"/></svg>
+          Registrar pago
+        </button>
+      </div>
+
+      <div class="kpi-grid" id="paymentsKpiGrid" style="grid-template-columns:repeat(3,1fr)"></div>
+
+      <div class="table-toolbar">
+        <input type="text" class="text-input" id="paymentSearch" placeholder="Buscar por alumno…" style="min-width:220px" />
+        <select class="select-input" id="filterPaymentStatus2">
+          <option value="">Todos los estados</option>
+          <option value="al_dia">Pagado</option>
+          <option value="pendiente">Pendiente</option>
+          <option value="vencido">Vencido</option>
+        </select>
+        <div class="topbar-spacer"></div>
+        <button type="button" class="chip-btn" id="btnExportPayments">Exportar CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead>
+            <tr><th>Alumno</th><th>Plan</th><th>Monto</th><th>Método</th><th>Fecha</th><th>Estado</th><th>Comprobante</th><th></th></tr>
+          </thead>
+          <tbody id="paymentsTableBody"></tbody>
+        </table>
+        <div class="pagination" id="paymentsPagination"></div>
+      </div>
+    </section>
+
+    <!-- ===================== CAJA ===================== -->
+    <section class="view" id="view-caja">
+      <div class="view-header">
+        <div>
+          <h2>Caja</h2>
+          <p>Apertura, arqueo y cierre de caja por turno.</p>
+        </div>
+      </div>
+      <div id="cajaContent"></div>
+    </section>
+
+    <!-- ===================== GASTOS ===================== -->
+    <section class="view" id="view-gastos">
+      <div class="view-header">
+        <div>
+          <h2>Gastos</h2>
+          <p>Sueldos, gastos fijos y variables de la academia.</p>
+        </div>
+        <div style="display:flex;gap:8px">
+          <button type="button" class="btn btn-ghost" id="btnGenerateSalaries">Generar sueldos del mes</button>
+          <button type="button" class="btn btn-primary" id="btnNewExpense">+ Nuevo gasto</button>
+        </div>
+      </div>
+
+      <div class="kpi-grid" id="expensesKpiGrid"></div>
+
+      <div class="charts-grid">
+        <div class="card">
+          <div class="card-header">
+            <h3>Gastos por categoría</h3>
+            <div class="card-actions" id="expensesByCategoryActions"></div>
+          </div>
+          <div class="card-body" id="expensesByCategoryChart"></div>
+        </div>
+        <div class="card">
+          <div class="card-header"><h3>Fijos vs. variables</h3></div>
+          <div class="card-body" id="expensesFixedVarChart"></div>
+        </div>
+      </div>
+
+      <div class="table-toolbar">
+        <input type="text" class="text-input" id="expenseSearch" placeholder="Buscar por descripción…" style="min-width:220px" />
+        <select class="select-input" id="filterExpenseCategory">
+          <option value="">Todas las categorías</option>
+        </select>
+        <select class="select-input" id="filterExpenseType">
+          <option value="">Fijos y variables</option>
+          <option value="fijo">Solo fijos</option>
+          <option value="variable">Solo variables</option>
+        </select>
+        <div class="topbar-spacer"></div>
+        <button type="button" class="chip-btn" id="btnExportExpenses">Exportar CSV</button>
+      </div>
+
+      <div class="table-wrap">
+        <table class="data-table">
+          <thead><tr><th>Descripción</th><th>Categoría</th><th>Tipo</th><th>Monto</th><th>Fecha</th><th>Recurrente</th><th></th></tr></thead>
+          <tbody id="expensesTableBody"></tbody>
+        </table>
+        <div class="pagination" id="expensesPagination"></div>
+      </div>
+    </section>
+
+    <!-- ===================== NOTIFICACIONES ===================== -->
+    <section class="view" id="view-notificaciones">
+      <div class="view-header">
+        <div>
+          <h2>Notificaciones</h2>
+          <p>Cola de mensajes que se enviarían por WhatsApp/correo.
+            <span class="badge badge-neutral" style="margin-left:6px">Simulado — no se envía nada real</span>
+          </p>
+        </div>
+      </div>
+      <div id="notificationsList"></div>
+    </section>
+
+    <!-- ===================== PLANES Y GRADOS ===================== -->
+    <section class="view" id="view-planes">
+      <div class="view-header">
+        <div>
+          <h2>Planes y Grados</h2>
+          <p>Catálogo de membresías y escalas de graduación por disciplina.</p>
+        </div>
+      </div>
+
+      <div class="subtab-bar">
+        <button type="button" class="subtab-btn active" data-subtab="planes">Planes de membresía</button>
+        <button type="button" class="subtab-btn" data-subtab="grados">Escalas de graduación</button>
+      </div>
+
+      <div id="subtab-planes" class="subtab-panel active">
+        <div class="view-header" style="margin-bottom:14px">
+          <p style="margin:0;color:var(--text-muted);font-size:12.5px">Alumnos activos, ingresos generados y estado de cada plan.</p>
+          <button class="btn btn-primary" id="btnNewPlan">+ Nuevo plan</button>
+        </div>
+        <div class="plan-card-grid" id="planCardGrid"></div>
+      </div>
+
+      <div id="subtab-grados" class="subtab-panel">
+        <div class="program-tab-bar" id="gradosProgramTabs"></div>
+        <div class="card">
+          <div class="card-header">
+            <h3 id="gradosScaleTitle">Escala</h3>
+            <div class="card-actions"><button type="button" class="chip-btn" id="btnNewLevel">+ Agregar nivel</button></div>
+          </div>
+          <div class="card-body" id="gradosScaleBody"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ===================== CONFIGURACIÓN ===================== -->
+    <section class="view" id="view-configuracion">
+      <div class="view-header">
+        <div>
+          <h2>Configuración</h2>
+          <p>Datos de la academia y disciplinas activas.</p>
+        </div>
+      </div>
+
+      <div class="settings-grid">
+        <div class="card">
+          <div class="card-header"><h3>Datos de la academia</h3></div>
+          <div class="card-body">
+            <form id="academyForm">
+              <div class="form-row"><label>Nombre</label><input type="text" name="name" id="fldAcademyName" /></div>
+              <div class="form-row"><label>Dirección</label><input type="text" name="address" id="fldAcademyAddress" /></div>
+              <div class="form-row"><label>Teléfono</label><input type="text" name="phone" id="fldAcademyPhone" /></div>
+              <div class="form-row"><label>RUC (para comprobantes)</label><input type="text" name="ruc" id="fldAcademyRuc" /></div>
+              <div class="form-row"><label>Meta de ingresos mensual (S/)</label><input type="number" name="monthlyRevenueGoal" id="fldAcademyGoal" min="0" step="100" /></div>
+              <div class="form-row"><label>Zona horaria</label>
+                <select name="timezone" id="fldAcademyTz">
+                  <option>America/Lima</option><option>America/Bogota</option><option>America/Mexico_City</option>
+                </select>
+              </div>
+              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </form>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header"><h3>Disciplinas activas</h3></div>
+          <div class="card-body">
+            <div class="instructor-tags" id="programTags" style="margin-top:0"></div>
+            <p style="font-size:12px;color:var(--text-muted);margin-top:14px">Los planes de membresía y las escalas de graduación ahora se gestionan en <strong>Planes y Grados</strong>.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="card" style="margin-top:16px; border-color: color-mix(in srgb, var(--status-critical) 35%, var(--border))">
+        <div class="card-header"><h3 style="color:var(--status-critical)">Zona de riesgo</h3></div>
+        <div class="card-body" style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap">
+          <div>
+            <div style="font-weight:600;font-size:13.5px">Restablecer datos de ejemplo</div>
+            <div style="font-size:12.5px;color:var(--text-muted);margin-top:2px">Borra todo lo capturado en este navegador y vuelve a los datos de demostración originales.</div>
+          </div>
+          <button type="button" class="btn btn-ghost" id="btnResetDemo" style="border-color:var(--status-critical);color:var(--status-critical)">Restablecer datos</button>
+        </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<!-- ============ MODAL: ficha de alumno ============ -->
+<div class="modal-backdrop" id="studentModalBackdrop">
+  <div class="modal" id="studentModal"></div>
+</div>
+
+<script src="js/data.js"></script>
+<script src="js/store.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/charts.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>
